@@ -1,0 +1,14 @@
+.env/
+.idea/
+
+__pycache__/
+*.egg-info/
+
+*.py[cod]
+
+build/
+dist/
+
+config.ini
+
+*.sqlite3
