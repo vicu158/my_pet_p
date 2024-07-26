@@ -76,7 +76,7 @@
                             <p class="card-text">{{ product.description }}</p>
                         </div>
                         <div class="card-footer text-center">
-                            <a class="btn btn-outline-success" 
+                            <a class="btn btn-outline-success"
                                href="{% url 'products:basket_add' product.id %}">
                                 Отправить в корзину
                             </a>
@@ -85,31 +85,63 @@
                 </div>
                 {% endfor %}
             </div>
-
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
+            
                     <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
-                        <a class="page-link" 
+                        <a class="page-link"
                            href="{% if products.has_previous %} {% url 'products:paginator' products.previous_page_number %} {% else %} # {% endif %}"
-                        tabindex="-1" aria-disabled="true">
-                        Предыдущая
-                        </a>
+                           tabindex="-1" aria-disabled="true">
+                            Предыдущая</a>
                     </li>
-                    {% for page in products.paginator.page_range %}
-                    <li class="page-item">
-                        <a class="page-link" href="{% url 'products:paginator' page %}">
-                            {{ page }}
-                        </a>
-                    </li>
+            
+                    {% for page_item in products.paginator.page_range %}
+                    {% if products.number == page_item %}
+            
+                    <li class="page-item {% if page != products.number %}active{% endif %}"><a class="page-link"
+                        href="#">
+                        {{ page_item }}
+                    </a></li>
+            
+                    {% elif page_item >= products.number|add:-2 and page_item <= products.number|add:2 %}
+                    <li class="page-item"><a class="page-link" href="{% url 'products:paginator' page_item %}">
+                        {{ page_item }}
+                    </a></li>
+            
+                    {% endif %}
                     {% endfor %}
+            
                     <li class="page-item {% if not products.has_next %} disabled {% endif %}">
                         <a class="page-link"
                            href="{% if products.has_next %} {% url 'products:paginator' products.next_page_number %} {% else %} # {% endif %}">
-                            Следующая
-                        </a>
+                            Следующая</a>
                     </li>
                 </ul>
             </nav>
+{#            <nav aria-label="Page navigation example">#}
+{#                <ul class="pagination justify-content-center">#}
+{#                    <li class="page-item {% if not products.has_previous %} disabled {% endif %}">#}
+{#                        <a class="page-link"#}
+{#                           href="{% if products.has_previous %} {% url 'products:paginator' products.previous_page_number %} {% else %} # {% endif %}"#}
+{#                        tabindex="-1" aria-disabled="true">#}
+{#                        Предыдущая#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    {% for page in products.paginator.page_range %}#}
+{#                    <li class="page-item {% if page == products.number %}active{% endif %}">#}
+{#                        <a class="page-link" href="{% url 'products:paginator' page %}">#}
+{#                            {{ page }}#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    {% endfor %}#}
+{#                    <li class="page-item {% if not products.has_next %} disabled {% endif %}">#}
+{#                        <a class="page-link"#}
+{#                           href="{% if products.has_next %} {% url 'products:paginator' products.next_page_number %} {% else %} # {% endif %}">#}
+{#                            Следующая#}
+{#                        </a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </nav>#}
 
         </div>
 
