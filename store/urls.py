@@ -7,8 +7,8 @@ from products.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', index, name='index'), v1 FBV '/products'
-    path('', IndexView.as_view(), name='index'),  # v2 CBV '/products'
+    # path('', index, name='index'), FBV
+    path('', IndexView.as_view(), name='index'),  # CBV
     path('products/', include('products.urls', namespace='products')),
     path('users/', include('users.urls', namespace='users')),
 ]
