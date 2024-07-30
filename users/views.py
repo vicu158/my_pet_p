@@ -1,12 +1,18 @@
-from django.contrib import auth, messages
+from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.views import LoginView
 
-from products.models import Basket, BasketQuerySet
+from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.models import User
+
+
+class UserLoginView(LoginView):
+    template_name = 'users/login.html'
+    form_class = UserLoginForm
 
 
 def login(request):
@@ -69,8 +75,3 @@ def profile(request):
         'baskets': Basket.objects.filter(user=request.user)
     }
     return render(request, 'users/profile.html', context)
-
-
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
