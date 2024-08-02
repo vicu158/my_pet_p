@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-    <link href="/static/vendor/css/products.css" rel="stylesheet">
+    <link href='{% static 'vendor/css/products.css' %}' rel='stylesheet'>
 {% endblock %}
 
 {% block content %}
@@ -89,7 +89,7 @@
                                 <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
                                     <a class="page-link" href="{% if page_obj.has_previous %} ?page={{ page_obj.previous_page_number }} {% else %}#{% endif %}">&lsaquo;</a>
                                 </li>
-                            
+
                                 {% for page_item in page_obj.paginator.page_range %}
                                     {% if page_obj.number == page_item %}
                                         <li class="page-item {% if page != page_obj.number %} active {% endif %}"><a class="page-link" href="#">{{ page_item }}</a></li>
@@ -97,7 +97,7 @@
                                         <li class="page-item"><a class="page-link" href="?page={{ page_item }}">{{ page_item }}</a></li>
                                     {% endif %}
                                 {% endfor %}
-                            
+
                                 <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
                                     <a class="page-link" href="{% if page_obj.has_next %} ?page={{ page_obj.next_page_number }} {% else %}#{% endif %}">&rsaquo;</a>
                                 </li>
@@ -112,7 +112,7 @@
         </div>
 
     </div>
-    
+
     
     
 {% endblock %}
