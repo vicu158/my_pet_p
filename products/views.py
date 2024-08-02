@@ -3,9 +3,8 @@ from django.shortcuts import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 
-
-from products.models import Product, ProductCategory, Basket
 from common.views import TitleMixin
+from products.models import Basket, Product, ProductCategory
 
 
 # v2 CBV ''
