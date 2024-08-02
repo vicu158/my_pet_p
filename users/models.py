@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 class User(AbstractUser):
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
     is_verified_email = models.BooleanField(default=False)
+    email = models.EmailField(unique=True)
 
 
 class EmailVerification(models.Model):
@@ -33,7 +34,8 @@ class EmailVerification(models.Model):
         send_mail(
             subject=subject,
             message=message,
-            from_email='from@example.com',
+            # from_email='from@example.com',
+            from_email=settings.EMAIL_HOST_USER,
             recipient_list=[self.user.email],
             fail_silently=False
         )
