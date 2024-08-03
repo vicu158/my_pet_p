@@ -135,13 +135,13 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'storewelcomestore@gmail.com'
-# EMAIL_HOST_PASSWORD = 'zxrlaaztenfyigbu'
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'storewelcomestore@gmail.com'
+EMAIL_HOST_PASSWORD = 'zxrlaaztenfyigbu'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # OAuth
 AUTHENTICATION_BACKENDS = [
@@ -159,3 +159,12 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Moscow'
