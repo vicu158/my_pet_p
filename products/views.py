@@ -7,13 +7,11 @@ from common.views import TitleMixin
 from products.models import Basket, Product, ProductCategory
 
 
-# v2 CBV ''
 class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
     title = 'Store'
 
 
-# v2 CBV '/products/'
 class ProductsListView(TitleMixin, ListView):
     model = Product
     template_name = 'products/products.html'
