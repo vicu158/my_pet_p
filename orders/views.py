@@ -1,4 +1,9 @@
-from django.urls import reverse_lazy
+import uuid
+from http import HTTPStatus
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 
 from common.views import TitleMixin
