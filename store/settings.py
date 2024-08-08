@@ -2,6 +2,8 @@ import environ
 
 from pathlib import Path
 
+a=1
+
 env = environ.Env(
     DEBUG=bool,
     SECRET_KEY=str,
